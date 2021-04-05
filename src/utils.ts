@@ -28,13 +28,3 @@ export function getFenMap(fen: string) {
 export function getSquareColor(rankIndex: number, fileIndex: number) {
   return (rankIndex + fileIndex) % 2 === 0 ? "w" : "b";
 }
-
-export function makeMove(fen: string, move: ShortMove) {
-  const chess: ChessInstance = new Chess(fen);
-
-  if (chess.move(move)) {
-    return chess.fen();
-  }
-
-  return null;
-}
