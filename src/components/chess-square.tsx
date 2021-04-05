@@ -7,7 +7,10 @@ const ChessSquare: React.FC<{
 }> = ({ size, color, children, onPieceDrop }) => {
   return (
     <div
-      onDragOver={(e) => e.preventDefault()}
+      onDragOver={(e) => {
+        e.preventDefault();
+        e.dataTransfer.dropEffect = "move";
+      }}
       onDrop={(e) => {
         const from = e.dataTransfer.getData("from") as Square;
         onPieceDrop(from);
