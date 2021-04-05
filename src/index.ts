@@ -1,1 +1,1 @@
-export { default } from "./components/chess-board";
+export { default } from "./components/chessboard";
