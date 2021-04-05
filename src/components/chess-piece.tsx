@@ -2,20 +2,20 @@ import { Piece, Square } from "chess.js";
 
 const pieces = {
   b: {
-    b: require("../images/bB.svg").default,
-    k: require("../images/bK.svg").default,
-    q: require("../images/bQ.svg").default,
-    r: require("../images/bR.svg").default,
-    p: require("../images/bP.svg").default,
-    n: require("../images/bN.svg").default,
+    b: require("../pieces/bB.svg").default,
+    k: require("../pieces/bK.svg").default,
+    q: require("../pieces/bQ.svg").default,
+    r: require("../pieces/bR.svg").default,
+    p: require("../pieces/bP.svg").default,
+    n: require("../pieces/bN.svg").default,
   },
   w: {
-    b: require("../images/wB.svg").default,
-    k: require("../images/wK.svg").default,
-    q: require("../images/wQ.svg").default,
-    r: require("../images/wR.svg").default,
-    p: require("../images/wP.svg").default,
-    n: require("../images/wN.svg").default,
+    b: require("../pieces/wB.svg").default,
+    k: require("../pieces/wK.svg").default,
+    q: require("../pieces/wQ.svg").default,
+    r: require("../pieces/wR.svg").default,
+    p: require("../pieces/wP.svg").default,
+    n: require("../pieces/wN.svg").default,
   },
 };
 

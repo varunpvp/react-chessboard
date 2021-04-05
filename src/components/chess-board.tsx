@@ -25,13 +25,14 @@ const ChessBoard: React.FC<{
   return (
     <div>
       {oneToSeven.map((_, rankIndex) => (
-        <div style={{ display: "flex" }}>
+        <div style={{ display: "flex" }} key={`rank-${rankIndex}`}>
           {oneToSeven.map((_, fileIndex) => {
             const squareColor = getSquareColor(rankIndex, fileIndex);
             const square = getSquare(rankIndex, fileIndex, "w");
             const piece = fenMap.get(square);
             return (
               <ChessSquare
+                key={square}
                 size={squareSize}
                 color={squareColor === "w" ? lightSquareColor : darkSquareColor}
                 onPieceDrop={(from) =>
