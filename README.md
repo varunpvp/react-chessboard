@@ -1,4 +1,4 @@
-# A Chessboard Component for React
+# A Chessboard Component for React (WIP)
 
 <p align="center">
   <a href="https://conventionalcommits.org">
