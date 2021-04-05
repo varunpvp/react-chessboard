@@ -11,6 +11,26 @@
 
 A Chessboard Componenet build with React and Typescript.
 
+## Install
+
+npm
+
+```
+npm install @varunpvp/react-chessboard@1.2.2
+```
+
+yarn
+
+```
+yarn add @varunpvp/react-chessboard@1.2.2
+```
+
+## Import
+
+```
+import ChessBoard from '@varunpvp/react-chessboard@1.2.2'
+```
+
 ## Usage
 
 ```
