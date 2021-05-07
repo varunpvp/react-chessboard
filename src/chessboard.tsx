@@ -1,21 +1,23 @@
-import { ShortMove } from "chess.js";
+import { PieceType, ShortMove } from "chess.js";
 import React from "react";
-import { getFenMap, getSquare, getSquareColor } from "../utils";
-import ChessPiece from "./chess-piece";
-import ChessSquare from "./chess-square";
+import { getFenMap, getSquare, getSquareColor, isPromoting } from "./utils";
+import ChessPiece from "./components/chess-piece";
+import ChessSquare from "./components/chess-square";
 
 const oneToSeven = new Array(8).fill(0);
 
-const ChessBoard: React.FC<{
+const Chessboard: React.FC<{
   size: number;
   fen: string;
   onMove: (move: ShortMove) => void;
+  onPromote?: () => Promise<Exclude<PieceType, "p" | "k">>;
   lightSquareColor?: string;
   darkSquareColor?: string;
 }> = ({
   size,
   fen,
   onMove,
+  onPromote,
   lightSquareColor = "#f0d9b5",
   darkSquareColor = "#b58862",
 }) => {
@@ -35,9 +37,15 @@ const ChessBoard: React.FC<{
                 key={square}
                 size={squareSize}
                 color={squareColor === "w" ? lightSquareColor : darkSquareColor}
-                onPieceDrop={(from) =>
-                  onMove({ from, to: square, promotion: "q" })
-                }
+                onPieceDrop={async (from) => {
+                  if (isPromoting(fen, { from, to: square })) {
+                    const promotion = onPromote ? await onPromote() : "q";
+                    onMove({ from, to: square, promotion });
+                    return;
+                  }
+
+                  onMove({ from, to: square });
+                }}
               >
                 {piece && (
                   <ChessPiece size={squareSize} piece={piece} square={square} />
@@ -51,4 +59,4 @@ const ChessBoard: React.FC<{
   );
 };
 
-export default ChessBoard;
+export default Chessboard;

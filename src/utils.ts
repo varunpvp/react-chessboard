@@ -12,7 +12,7 @@ export function getSquare(
 }
 
 export function getFenMap(fen: string) {
-  const chess: ChessInstance = new Chess(fen);
+  const chess = newChess(fen);
   const map = new Map<Square, Piece>();
 
   chess.SQUARES.forEach((square) => {
@@ -27,4 +27,31 @@ export function getFenMap(fen: string) {
 
 export function getSquareColor(rankIndex: number, fileIndex: number) {
   return (rankIndex + fileIndex) % 2 === 0 ? "w" : "b";
+}
+
+export function isPromoting(fen: string, move: Omit<ShortMove, "promotion">) {
+  const chess = newChess(fen);
+
+  const piece = chess.get(move.from);
+
+  if (piece?.type !== "p") {
+    return false;
+  }
+
+  if (piece.color !== chess.turn()) {
+    return false;
+  }
+
+  if (!["1", "8"].some((it) => move.to.endsWith(it))) {
+    return false;
+  }
+
+  return chess
+    .moves({ square: move.from, verbose: true })
+    .map((it) => it.to)
+    .includes(move.to);
+}
+
+export function newChess(fen?: string): ChessInstance {
+  return new Chess(fen);
 }
