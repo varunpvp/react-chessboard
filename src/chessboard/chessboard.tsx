@@ -1,8 +1,8 @@
 import { PieceType, ShortMove } from "chess.js";
 import React from "react";
 import { getFenMap, getSquare, getSquareColor, isPromoting } from "./utils";
-import ChessPiece from "./components/chess-piece";
-import ChessSquare from "./components/chess-square";
+import ChessPiece from "./chess-piece";
+import ChessSquare from "./chess-square";
 
 const oneToSeven = new Array(8).fill(0);
 
