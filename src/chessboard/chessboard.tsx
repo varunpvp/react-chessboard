@@ -1,34 +1,26 @@
-import { PieceType, ShortMove } from "chess.js";
+import { ShortMove } from "chess.js";
 import React from "react";
 import { getFenMap, getSquare, getSquareColor } from "./utils";
 import ChessPiece from "./chess-piece";
 import ChessSquare from "./chess-square";
 
-const oneToSeven = new Array(8).fill(0);
+const oneToSeven = new Array(8).fill(0).map((_, i) => i);
+const lightSquareColor = "#f0d9b5";
+const darkSquareColor = "#b58862";
 
 const Chessboard: React.FC<{
   size: number;
   fen: string;
   onMove: (move: ShortMove) => void;
-  onPromote?: () => Promise<Exclude<PieceType, "p" | "k">>;
-  lightSquareColor?: string;
-  darkSquareColor?: string;
-}> = ({
-  size,
-  fen,
-  onMove,
-  onPromote,
-  lightSquareColor = "#f0d9b5",
-  darkSquareColor = "#b58862",
-}) => {
+}> = ({ size, fen, onMove }) => {
   const squareSize = size / 8;
   const fenMap = getFenMap(fen);
 
   return (
     <div>
-      {oneToSeven.map((_, rankIndex) => (
+      {oneToSeven.map((rankIndex) => (
         <div style={{ display: "flex" }} key={`rank-${rankIndex}`}>
-          {oneToSeven.map((_, fileIndex) => {
+          {oneToSeven.map((fileIndex) => {
             const squareColor = getSquareColor(rankIndex, fileIndex);
             const square = getSquare(rankIndex, fileIndex, "w");
             const piece = fenMap.get(square);
