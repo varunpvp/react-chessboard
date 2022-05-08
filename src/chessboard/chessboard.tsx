@@ -1,6 +1,6 @@
 import { PieceType, ShortMove } from "chess.js";
 import React from "react";
-import { getFenMap, getSquare, getSquareColor, isPromoting } from "./utils";
+import { getFenMap, getSquare, getSquareColor } from "./utils";
 import ChessPiece from "./chess-piece";
 import ChessSquare from "./chess-square";
 
@@ -37,15 +37,9 @@ const Chessboard: React.FC<{
                 key={square}
                 size={squareSize}
                 color={squareColor === "w" ? lightSquareColor : darkSquareColor}
-                onPieceDrop={async (from) => {
-                  if (isPromoting(fen, { from, to: square })) {
-                    const promotion = onPromote ? await onPromote() : "q";
-                    onMove({ from, to: square, promotion });
-                    return;
-                  }
-
-                  onMove({ from, to: square });
-                }}
+                onPieceDrop={async (from) =>
+                  onMove({ from, to: square, promotion: "q" })
+                }
               >
                 {piece && (
                   <ChessPiece size={squareSize} piece={piece} square={square} />
