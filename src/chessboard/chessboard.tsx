@@ -37,7 +37,7 @@ const Chessboard: React.FC<{
                 key={square}
                 size={squareSize}
                 color={squareColor === "w" ? lightSquareColor : darkSquareColor}
-                onPieceDrop={async (from) =>
+                onPieceDrop={(from) =>
                   onMove({ from, to: square, promotion: "q" })
                 }
               >
